@@ -19,10 +19,10 @@ initial begin
 
    in8 <= 1;
    @(posedge clk_4f);
-   reset <= 'h0;
 
    @(posedge clk_4f);
    in_data8 <= 8'hF;
+   reset <= 'h0;
    @(posedge clk_4f);
    in_data8 <= 8'hD;
    @(posedge clk_4f);
