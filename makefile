@@ -16,14 +16,14 @@ TESTBENCH0 = BancoPruebaStriping.v
 
 all:
 	@echo "Sintetizando stripe..."
-	yosys -s stripe.tcl
+	yosys -s ./Sintesis/stripe.tcl
 	sed -i 's/stripe/stripe_est/' $(TARGET1)
 	sed -i 's/lane0/lane0_est/g' $(TARGET1)
 	sed -i 's/lane1/lane1_est/g' $(TARGET1)
 	sed -i 's/valid0/valid0_est/g' $(TARGET1)
 	sed -i 's/valid1/valid1_est/g' $(TARGET1)
 	@echo "Sintetizando unstripe..."
-	yosys -s unstripe.tcl
+	yosys -s ./Sintesis/unstripe.tcl
 	sed -i 's/unstripe/unstripe_est/' $(TARGET3)
 	sed -i 's/dataOut/dataOut_est/g' $(TARGET3)
 	sed -i 's/validOut/validOut_est/g' $(TARGET3)
@@ -32,31 +32,31 @@ all:
 	sed -i 's/ulane0/ulane0_est/g' $(TARGET3)
 	sed -i 's/ulane1/ulane1_est/g' $(TARGET3)
 	@echo "Sintetizando genClock..."
-	yosys -s genClock.tcl
+	yosys -s ./Sintesis/genClock.tcl
 	sed -i 's/genClock/genClock_est/' $(TARGET5)
 	sed -i 's/clk_f/clk_f_est/g' $(TARGET5)
 	sed -i 's/clk_2f/clk_2f_est/g' $(TARGET5)
 	sed -i 's/clk_4f/clk_4f_est/g' $(TARGET5)
 	@echo "Sintetizando conv8_32..."
-	yosys -s conv8_32.tcl
+	yosys -s ./Sintesis/conv8_32.tcl
 	sed -i 's/conv8_32/conv8_32_est/' $(TARGET7)
 	sed -i 's/out32/out32_est/g' $(TARGET7)
 	sed -i 's/out_data32/out_data32_est/g' $(TARGET7)
 	@echo "Sintetizando conv32_8..."
-	yosys -s conv32_8.tcl
+	yosys -s ./Sintesis/conv32_8.tcl
 	sed -i 's/conv32_8/conv32_8_est/' $(TARGET9)
 	sed -i 's/out8/out8_est/g' $(TARGET9)
 	sed -i 's/out_data8/out_data8_est/g' $(TARGET9)
 stripe:
 	@echo "Sintetizando stripe..."
-	yosys -s stripe.tcl
+	yosys -s ./Sintesis/stripe.tcl
 	sed -i 's/stripe/stripe_est/' $(TARGET1)
 	sed -i 's/lane0/lane0_est/g' $(TARGET1)
 	sed -i 's/lane1/lane1_est/g' $(TARGET1)
 	sed -i 's/valid0/valid0_est/g' $(TARGET1)
 	sed -i 's/valid1/valid1_est/g' $(TARGET1)
 	@echo "Sintetizando unstripe..."
-	yosys -s unstripe.tcl
+	yosys -s ./Sintesis/unstripe.tcl
 	sed -i 's/unstripe/unstripe_est/' $(TARGET3)
 	sed -i 's/dataOut/dataOut_est/g' $(TARGET3)
 	sed -i 's/validOut/validOut_est/g' $(TARGET3)
@@ -64,7 +64,7 @@ stripe:
 	sed -i 's/valid1/valid1_est/g' $(TARGET3)
 	sed -i 's/lane0/lane0_est/g' $(TARGET3)
 	sed -i 's/lane1/lane1_est/g' $(TARGET3)
-	$(CC) -o $(OUTPUT0) $(TESTBENCH0)
+	$(CC) -I StripingTests/ -o $(OUTPUT0) $(TESTBENCH0) 
 	vvp $(OUTPUT0)
 	gtkwave $(OUTPUT1)
 
