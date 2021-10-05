@@ -2,23 +2,23 @@
 
 module genClock(input clk,
 		input 	   reset,
-		output reg clk_ff,
-		output reg clk_2ff,
-		output reg clk_3ff
+		output reg clk_f,
+		output reg clk_2f,
+		output reg clk_4f
 		);
 
   always @ (posedge clk) begin
     if (reset==1) begin        
-      clk_ff <= 1'h0; //reseteando clk
-      clk_2ff <= 1'h0; //reseteando clk
-      clk_3ff <= 1'h0; //reseteando clk           
+      clk_f <= 1'h0; //reseteando clk
+      clk_2f <= 1'h0; //reseteando clk
+      clk_4f <= 1'h0; //reseteando clk           
     end else begin         //cambia de alto a bajo o de bajo a alto    
-       clk_3ff <= ~clk_3ff;               
-       if (~clk_3ff) begin
-          clk_2ff <= ~clk_2ff;
+       clk_4f <= ~clk_4f;               
+       if (~clk_4f) begin
+          clk_2f <= ~clk_2f;
        end
-       if (~clk_2ff & ~clk_3ff) begin 
-            clk_ff <= ~clk_ff;
+       if (~clk_2f & ~clk_4f) begin 
+            clk_f <= ~clk_f;
        end
     end // else: !if(reset==1)
   end // always @ (posedge clk)

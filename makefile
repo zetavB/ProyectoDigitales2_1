@@ -26,19 +26,19 @@ all:
 	@echo "Sintetizando genClock..."
 	yosys -s genClock.tcl
 	sed -i 's/genClock/genClock_est/' $(TARGET5)
-	sed -i 's/clk_ff/clk_ff_est/g' $(TARGET5)
-	sed -i 's/clk_2ff/clk_2ff_est/g' $(TARGET5)
-	sed -i 's/clk_3ff/clk_3ff_est/g' $(TARGET5)
+	sed -i 's/clk_f/clk_f_est/g' $(TARGET5)
+	sed -i 's/clk_2f/clk_2f_est/g' $(TARGET5)
+	sed -i 's/clk_4f/clk_4f_est/g' $(TARGET5)
 	@echo "Sintetizando conv8_32..."
 	yosys -s conv8_32.tcl
 	sed -i 's/conv8_32/conv8_32_est/' $(TARGET7)
-	sed -i 's/out/out_est/g' $(TARGET7)
-	sed -i 's/out_data/out_data_est/g' $(TARGET7)
+	sed -i 's/out32/out32_est/g' $(TARGET7)
+	sed -i 's/out_data32/out_data32_est/g' $(TARGET7)
 	@echo "Sintetizando conv32_8..."
 	yosys -s conv32_8.tcl
 	sed -i 's/conv32_8/conv32_8_est/' $(TARGET9)
-	sed -i 's/out/out_est/g' $(TARGET9)
-	sed -i 's/out_data/out_data_est/g' $(TARGET9)
+	sed -i 's/out8/out8_est/g' $(TARGET9)
+	sed -i 's/out_data8/out_data8_est/g' $(TARGET9)
 
 clean:
 	rm -f $(TARGET1)
