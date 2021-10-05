@@ -10,8 +10,8 @@ module stripe(
 	      output reg 	valid1
 	      );
    //Definimos valores inicales en cero
-   reg [31:0] 		 valoresL0 = 32'b0;
-   reg [31:0] 		 valoresL1 = 32'b0;
+   reg [31:0] 		 valorL0 = 32'b0;
+   reg [31:0] 		 valorL1 = 32'b0;
    reg 			 valorV0 = 0;
    reg 			 valorV1 = 0;
    reg 			 valorV = 0;

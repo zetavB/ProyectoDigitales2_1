@@ -1,10 +1,10 @@
 module unstripe(
 		input 		  clk_2f, //Reloj 2f
-		input 		  reset,
-		input [31:0] 	  lane0,
-		input [31:0] 	  lane1,
-		input 		  valid0,
-		input 		  valid1,
+		input 		  ureset,
+		input [31:0] 	  ulane0,
+		input [31:0] 	  ulane1,
+		input 		  uvalid0,
+		input 		  uvalid1,
 		
 		output reg [31:0] dataOut,
 		output reg 	  validOut
@@ -16,39 +16,39 @@ module unstripe(
 
    //Iniciamos la logica del mux
    always @(posedge clk_2f) begin
-      if (reset == 1) begin
+      if (ureset == 1) begin
 	 selector <= 'b00;
       end else begin
-	 if (valid1 == 1) begin
-	    valid <= valid1;
+	 if (uvalid1 == 1) begin
+	    valid <= uvalid1;
 	    if (selector == 'b01) begin
-	       salidaMux <= lane1;
+	       salidaMux <= ulane1;
 	       selector <= selector + 1;
 	    end
 	    if (selector == 'b11) begin
-	       salidaMux <= lane1;
+	       salidaMux <= ulane1;
 	       selector <= selector + 1;
 	    end else begin
-	       valid <= valid1;
+	       valid <= uvalid1;
 	       selector <= selector + 1;
 	    end
-	 end // if (valid1 == 1)
-	 if (valid0 == 1) begin
-	    valid <= valid0;
+	 end // if (uvalid1 == 1)
+	 if (uvalid0 == 1) begin
+	    valid <= uvalid0;
 	    if (selector == 'b00) begin
-	       salidaMux <= lane0;
+	       salidaMux <= ulane0;
 	       selector <= selector + 1;
 	    end
 	    if (selector == 'b10) begin
-	       salidaMux <= lane0;
+	       salidaMux <= ulane0;
 	       selector <= selector +1;
 	    end
-	 end else begin // if (valid0 == 1)
+	 end else begin // if (uvalid0 == 1)
 	    salidaMux <= 'b0;
 	    valid <= 'b0;
 	    selector <= 0;
-	 end // else: !if(valid0 == 1)
-      end // else: !if(reset == 1)
+	 end // else: !if(uvalid0 == 1)
+      end // else: !if(ureset == 1)
    end // always @ (posedge clk_2f)
 
    //Despues de unstripe, pasamos los resultados a la salida
