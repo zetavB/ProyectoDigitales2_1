@@ -1,0 +1,4 @@
+module genClock(
+		
+		);
+endmodule // genClock

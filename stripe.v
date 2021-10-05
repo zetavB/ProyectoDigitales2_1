@@ -1,0 +1,4 @@
+module stripe(
+	      
+	      );
+endmodule // stripe

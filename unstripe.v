@@ -1,0 +1,4 @@
+module unstripe(
+		
+		);
+endmodule // unstripe
