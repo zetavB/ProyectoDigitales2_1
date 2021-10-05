@@ -1,13 +1,13 @@
 module stripe(
-	      input clk_2f, //Reloj 2f
-	      input [31:0] dataIn,
-	      input validIn,
-	      input reset,
+	      input 		clk_2f, //Reloj 2f
+	      input [31:0] 	dataIn,
+	      input 		validIn,
+	      input 		reset,
 
 	      output reg [31:0] lane0,
 	      output reg [31:0] lane1,
-	      output reg valid0,
-	      output reg valid1
+	      output reg 	valid0,
+	      output reg 	valid1
 	      );
    //Definimos valores inicales en cero
    reg [31:0] 		 valoresL0 = 32'b0;
