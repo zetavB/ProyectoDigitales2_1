@@ -1,10 +1,12 @@
 module tester(
-	input [7:0]			out_data8,
-	input               out8,
-	output reg			clk,clk_4f,clk_f,
-	output reg [31:0]	in_data32,
-	output reg 			reset,
-	output reg          in32);
+	input [7:0] 	  out_data8,
+	input [7:0] 	  out_data8_est,
+	input 		  out8,
+	input 		  out8_est,
+	output reg 	  clk,clk_4f,clk_f,
+	output reg [31:0] in_data32,
+	output reg 	  reset,
+	output reg 	  in32);
 	
 initial begin
 		$dumpfile("32_8.vcd");	
