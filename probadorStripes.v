@@ -54,7 +54,7 @@ module probadorStripes(
    always #50 valid1 <= 1;
    always #50 uvalid0 <= 1;
    always #50 uvalid1 <= 1;
-   always #50 reset <= 0;
+   always #150 reset <= 0;
    always #150 ureset <= 0;
    
    

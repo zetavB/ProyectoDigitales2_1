@@ -55,11 +55,11 @@ module BancoPruebasStriping; // Testbench para striping
 			       .validOut_est	(validOut_est),
 			       // Inputs
 			       .clk_2f		(clk_2f),
-			       .ulane0_est	(ulane0_est[31:0]),
-			       .ulane1_est	(ulane1_est[31:0]),
+			       .ulane0		(ulane0[31:0]),
+			       .ulane1		(ulane1[31:0]),
 			       .ureset		(ureset),
-			       .uvalid0_est	(uvalid0_est),
-			       .uvalid1_est	(uvalid1_est));
+			       .uvalid0		(uvalid0),
+			       .uvalid1		(uvalid1));
 
    // Probador: generador de senales y monitor
    probadorStripes probador0(/*AUTOINST*/
