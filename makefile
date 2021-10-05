@@ -3,6 +3,12 @@ TARGET0 = stripe.v
 TARGET1 = stripe_est.v
 TARGET2 = unstripe.v
 TARGET3 = unstripe_est.v
+TARGET4 = genClock.v
+TARGET5 = genClock_est.v
+TARGET6 = conv8_32.v
+TARGET7 = conv8_32_est.v
+TARGET8 = conv32_8.v
+TARGET9 = conv32_8_est.v
 
 all:
 	@echo "Sintetizando stripe..."
@@ -17,6 +23,26 @@ all:
 	sed -i 's/unstripe/unstripe_est/' $(TARGET3)
 	sed -i 's/dataOut/dataOut_est/g' $(TARGET3)
 	sed -i 's/validOut/validOut_est/g' $(TARGET3)
+	@echo "Sintetizando genClock..."
+	yosys -s genClock.tcl
+	sed -i 's/genClock/genClock_est/' $(TARGET5)
+	sed -i 's/clk_ff/clk_ff_est/g' $(TARGET5)
+	sed -i 's/clk_2ff/clk_2ff_est/g' $(TARGET5)
+	sed -i 's/clk_3ff/clk_3ff_est/g' $(TARGET5)
+	@echo "Sintetizando conv8_32..."
+	yosys -s conv8_32.tcl
+	sed -i 's/conv8_32/conv8_32_est/' $(TARGET7)
+	sed -i 's/out/out_est/g' $(TARGET7)
+	sed -i 's/out_data/out_data_est/g' $(TARGET7)
+	@echo "Sintetizando conv32_8..."
+	yosys -s conv32_8.tcl
+	sed -i 's/conv32_8/conv32_8_est/' $(TARGET9)
+	sed -i 's/out/out_est/g' $(TARGET9)
+	sed -i 's/out_data/out_data_est/g' $(TARGET9)
+
 clean:
 	rm -f $(TARGET1)
 	rm -f $(TARGET3)
+	rm -f $(TARGET5)
+	rm -f $(TARGET7)
+	rm -f $(TARGET9)
