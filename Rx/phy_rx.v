@@ -12,7 +12,7 @@ module phy_rx(
     input clk_f,
     input clk_2f, 
     input clk_4f,
-    output [31:0] data_out);
+    output [31:0] dataOut);
 
     wire [31:0] w8, w9;
     wire [7:0]  w6, w7;
@@ -76,9 +76,9 @@ module phy_rx(
 			 .validOut		(v8),
 			 // Inputs
 			 .clk_2f		(clk_2f),
-			 .ureset		(ureset),
+			 .ureset		(reset),
 			 .ulane0		(w8[31:0]),
-			 .ulane1		(w9[31:0]),
+			 .ulane1		(ulane1[31:0]),
 			 .uvalid0		(v6),
 			 .uvalid1		(v7));
 

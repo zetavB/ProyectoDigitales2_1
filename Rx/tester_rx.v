@@ -398,6 +398,5 @@ module tester_rx(
 	initial clk_f <= 0;
 	always #2 clk_4f <= ~clk_4f;
         
-    end
     
 endmodule
