@@ -5,8 +5,8 @@
 
 module result_testbench();
 
-wire clk, clk_f, clk_2f,clk_4f, valid, reset, data_out_serial;
-wire [7:0] data_in_8b;
+wire clk, clk_f, clk_2f,clk_4f, valid, reset, data_out_serial, valid_out;
+wire [7:0] data_in_8b, parallel_data;
 
 genClock gen_clk(
     .clk(clk),
@@ -26,7 +26,12 @@ parallel_serial p_s_inst(
 );
 
 serial_parallel s_p_inst(
-    /*AUTOINST*/
+    .clk_f(clk_f), 
+    .clk(clk), 
+    .reset(reset), 
+    .data_serial_in(data_out_serial),
+	.parallel_data(parallel_data),
+	.valid_out(valid_out)
 );
 
 parallel_serial_testbench p_s_tb(

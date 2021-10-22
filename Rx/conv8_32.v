@@ -28,7 +28,7 @@ module conv8_32(
                memory_1<=0;
                memory_2<=0;
                memory_3<=0;
-               memory_4<=data_recordar3;
+               memory_4<=memory_3;
                new_fv<=1;
 	    end
 	    if (counter > 0)begin
@@ -43,7 +43,7 @@ module conv8_32(
                memory_1<=0;
                memory_2<=0;
                memory_3<=0;
-               memory_4<=data_recordar3;
+               memory_4<=memory_3;
                counter<=3'b1;
                new_fv<=1;  
 	    end else begin
