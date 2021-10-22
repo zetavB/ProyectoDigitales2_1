@@ -9,7 +9,7 @@
 `include "phy_tx.v"
 `include "probadorTx.v"
 
-module BancoPruebaTx; // Testbench para striping
+module BancoPruebaTx; // Testbench para Tx
 
    wire clk_f, clk_2f, clk_4f, clk, reset, validIn, out_tx_serial_0, out_tx_serial_1;
    wire [31:0] data_in_flops;
@@ -30,6 +30,7 @@ module BancoPruebaTx; // Testbench para striping
 		      .out_tx_serial_0	(out_tx_serial_0),
 		      .out_tx_serial_1	(out_tx_serial_1),
 		      // Inputs
+		      .clk              (clk),
 		      .clk_f		(clk_f),
 		      .clk_2f		(clk_2f),
 		      .clk_4f		(clk_4f),

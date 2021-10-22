@@ -1,10 +1,10 @@
 module phy_tx(
-	input 	     clk_f, clk_2f, clk_4f,
+	input 	     clk, clk_f, clk_2f, clk_4f,
 	input [31:0] data_in_flops,
 	input 	     validIn,
 	input 	     reset, 
-	output reg   out_tx_serial_0,
-	output reg   out_tx_serial_1
+	output   out_tx_serial_0,
+	output   out_tx_serial_1
 	      );
    wire [31:0] 	     lane0, lane1;
    wire [7:0] 	     ateBit0, ateBit1;
@@ -47,7 +47,7 @@ module phy_tx(
    
    parallel_serial pToS0_tx(/*AUTOINST*/
 			    // Outputs
-			    .data_out_serial	(data_out_serial_0),
+			    .data_out_serial	(out_tx_serial_0),
 			    // Inputs
 			    .clk_f		(clk_f),
 			    .clk		(clk),
@@ -56,7 +56,7 @@ module phy_tx(
 			    .data_in_8b		(ateBit0[7:0]));
    parallel_serial pToS1_tx(/*AUTOINST*/
 			    // Outputs
-			    .data_out_serial	(data_out_serial_1),
+			    .data_out_serial	(out_tx_serial_1),
 			    // Inputs
 			    .clk_f		(clk_f),
 			    .clk		(clk),
