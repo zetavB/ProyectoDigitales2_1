@@ -1,0 +1,7 @@
+read_verilog -sv phy_rx.v
+hierarchy -check -top phy_rx
+techmap; opt
+dfflibmap -liberty cmos_cells.lib
+abc -liberty cmos_cells.lib
+clean
+write_verilog sintesis.v
