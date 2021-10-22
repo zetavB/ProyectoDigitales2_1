@@ -1,8 +1,5 @@
 module tester_rx(
     output reg clk,
-    output reg clk_4f,
-    output reg clk_f,
-    output reg clk_2f,
     output reg D_0,
     output reg D_1,
     output reg reset,
@@ -391,12 +388,5 @@ module tester_rx(
     //Vamos a crear los relojes y hacer el toggle de cada uno de ellos para las pruebas correctas.
 	initial	clk <= 0;
 	always	#1 clk 	<= ~clk;
-	initial clk_4f <= 0;
-	always #8 clk_f <= ~clk_f;
-	initial clk_2f <= 0;
-	always #4 clk_2f <= ~clk_2f;
-	initial clk_f <= 0;
-	always #2 clk_4f <= ~clk_4f;
-        
     
 endmodule
