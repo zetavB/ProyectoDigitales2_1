@@ -1,74 +1,61 @@
-`include "unstripe.v"
-`include "conv8_32"
-`include "serial_parallel"
-`include "genClock.v"
-
 module phy_rx(
-    input in_data_serie_0,
-    input in_data_serie_1,
-    input reset, 
-    input valid, 
-    input clk, 
-    input clk_f,
-    input clk_2f, 
-    input clk_4f,
-    output [31:0] data_out);
+    input 	  in_data_serie_0,
+    input 	  in_data_serie_1,
+    input 	  reset, 
+    input 	  valid, 
+    input 	  clk, 
+    input 	  clk_f,
+    input 	  clk_2f, 
+    input 	  clk_4f,
+    output [31:0] dataOut,
+    output 	  validOut
+);
 
-    wire [31:0] w8, w9;
-    wire [7:0]  w6, w7;
-    wire v4, v5, v6, v7, v8, w4, w5;
-    wire clk_2f_g, clk_4f_g, clk_f_g;
-
-    genClock clock_generator(/*AUTOINST*/
-			     // Outputs
-			     .clk_f		(clk_f),
-			     .clk_2f		(clk_2f),
-			     .clk_4f		(clk_4f),
-			     // Inputs
-			     .clk		(clk),
-			     .reset		(reset));
+   wire [31:0] 	  therTo0, therTo1;
+   wire [7:0] 	  ateBit0, ateBit1;
+   wire 	  valid0, valid1, valid2, valid3;
 
     serial_parallel s_p_0(/*AUTOINST*/
 			  // Outputs
-			  .parallel_data	(parallel_data[7:0]),
-			  .valid_out		(valid_out),
+			  .parallel_data	(ateBit0[7:0]),
+			  .valid_out		(valid0),
 			  // Inputs
 			  .clk_f		(clk_f),
 			  .clk			(clk),
 			  .reset		(reset),
-			  .data_serial_in	(data_serial_in));
+			  .data_serial_in	(in_data_serie_0));
 
     serial_parallel s_p_1(/*AUTOINST*/
 			  // Outputs
-			  .parallel_data	(parallel_data[7:0]),
-			  .valid_out		(valid_out),
+			  .parallel_data	(ateBit1[7:0]),
+			  .valid_out		(valid1),
 			  // Inputs
 			  .clk_f		(clk_f),
 			  .clk			(clk),
 			  .reset		(reset),
-			  .data_serial_in	(data_serial_in));
+			  .data_serial_in	(in_data_serie_1));
 
-    conv8_32 8_32_0(/*AUTOINST*/
-		    // Outputs
-		    .out_data32		(out_data32[31:0]),
-		    .out32		(out32),
-		    // Inputs
-		    .clk_4f		(clk_4f),
-		    .clk_f		(clk_f),
-		    .reset		(reset),
-		    .in_data8		(in_data8[7:0]),
-		    .in8		(in8));
+    conv8_32 conv8_32_0(/*AUTOINST*/
+			// Outputs
+			.out_data32	(therTo0[31:0]),
+			.out32		(valid2),
+			// Inputs
+			.clk_4f		(clk_4f),
+			.clk_f		(clk_f),
+			.reset		(reset),
+			.in_data8	(ateBit0[7:0]),
+			.in8		(valid0));
     
-    conv8_32 8_32_1(/*AUTOINST*/
-		    // Outputs
-		    .out_data32		(out_data32[31:0]),
-		    .out32		(out32),
-		    // Inputs
-		    .clk_4f		(clk_4f),
-		    .clk_f		(clk_f),
-		    .reset		(reset),
-		    .in_data8		(in_data8[7:0]),
-		    .in8		(in8));
+    conv8_32 conv8_32_1(/*AUTOINST*/
+			// Outputs
+			.out_data32	(therTo1[31:0]),
+			.out32		(valid3),
+			// Inputs
+			.clk_4f		(clk_4f),
+			.clk_f		(clk_f),
+			.reset		(reset),
+			.in_data8	(ateBit1[7:0]),
+			.in8		(valid1));
 
     unstripe unstripe_rx(/*AUTOINST*/
 			 // Outputs
@@ -76,12 +63,11 @@ module phy_rx(
 			 .validOut		(validOut),
 			 // Inputs
 			 .clk_2f		(clk_2f),
-			 .ureset		(ureset),
-			 .ulane0		(ulane0[31:0]),
-			 .ulane1		(ulane1[31:0]),
-			 .uvalid0		(uvalid0),
-			 .uvalid1		(uvalid1));
+			 .ureset		(reset),
+			 .ulane0		(therTo0[31:0]),
+			 .ulane1		(therTo1[31:0]),
+			 .uvalid0		(valid2),
+			 .uvalid1		(valid3));
+endmodule // phy_rx
 
 
-
-endmodule

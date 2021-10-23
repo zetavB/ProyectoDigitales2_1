@@ -1,8 +1,3 @@
-`include "cmos_cells.v"
-`include "stripe.v"
-`include "conv32_8.v"
-`include "parallel_serial.v"
-
 module phy_tx(
 	input 	     clk, clk_f, clk_2f, clk_4f,
 	input [31:0] data_in_flops,
