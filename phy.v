@@ -1,19 +1,18 @@
-`include "cmos_cells.v"
 `include "stripe.v"
 `include "conv32_8.v"
 `include "parallel_serial.v"
 `include "unstripe.v"
-`include "conv8_32"
-`include "serial_parallel"
+`include "conv8_32.v"
+`include "serial_parallel.v"
 `include "genClock.v"
 `include "phy_tx.v"
 `include "phy_rx.v"
 
 module phy(
-	   input 	 clk, reset, validIn;
-	   input [31:0]  data_in_flops;
-	   output [31:0] dataOut;
-	   output 	 validOut;
+	   input 	 clk, reset, validIn,
+	   input [31:0]  data_in_flops,
+	   output [31:0] dataOut,
+	   output 	 validOut
 	   );
 
    wire 		 clk_f, clk_2f, clk_4f;
