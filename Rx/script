@@ -4,4 +4,4 @@ techmap; opt
 dfflibmap -liberty cmos_cells.lib
 abc -liberty cmos_cells.lib
 clean
-write_verilog sintesis.v
+write_verilog synth.v
