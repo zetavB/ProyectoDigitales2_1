@@ -5,8 +5,7 @@ module conv8_32(
 		input 		  clk_f,
 		input 		  reset, 
 		input [7:0] 	  in_data8,
-		input 		  in8
-		);
+		input 		  in8);
 
    reg [2:0] 			  counter = 2'b0;
    reg [7:0] 			  memory_0 = 8'b0;
@@ -20,7 +19,7 @@ module conv8_32(
 
    always @(posedge clk_4f)begin
       if (reset == 1)begin
-	 counter <= 0;
+	 	counter <= 0;
       end else begin
 	 if (in8 == 0) begin
 	    if (counter == 4)begin
@@ -28,7 +27,7 @@ module conv8_32(
                memory_1<=0;
                memory_2<=0;
                memory_3<=0;
-               memory_4<=data_recordar3;
+               memory_4<=memory_3;
                new_fv<=1;
 	    end
 	    if (counter > 0)begin
@@ -43,7 +42,7 @@ module conv8_32(
                memory_1<=0;
                memory_2<=0;
                memory_3<=0;
-               memory_4<=data_recordar3;
+               memory_4<=memory_3;
                counter<=3'b1;
                new_fv<=1;  
 	    end else begin

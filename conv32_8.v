@@ -5,8 +5,7 @@ module conv32_8(
 		input 		 clk_f,
 		input 		 reset,
 		input [31:0] 	 in_data32,
-		input 		 in32
-		);
+		input 		 in32);
 
 
    reg [1:0] 			 contador=2'b0;

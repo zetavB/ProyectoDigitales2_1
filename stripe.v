@@ -55,8 +55,8 @@ module stripe(
 	 end // if (~valorV)
 	 if (validIn) begin
 	    if (~valorS) begin
-	       lane1 = valorL1;
 	       lane0= dataIn;
+	       lane1 = valorL1;
 	       selector = 1;
 	    end else begin
 	       lane0 = valorL0;
