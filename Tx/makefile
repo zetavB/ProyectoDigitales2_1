@@ -19,9 +19,6 @@ all:
 	sed -i 's/pToS0_tx/pToS0_tx_est/g' $(TARGET1)
 	sed -i 's/pToS1_tx/pToS1_tx_est/g' $(TARGET1)
 	sed -i 's/striping_tx/striping_tx_est/g' $(TARGET1)
-	
-
-tx:
 	$(CC) -o $(OUTPUT0) $(TESTBENCH0) 
 	vvp $(OUTPUT0)
 	gtkwave $(OUTPUT1)
